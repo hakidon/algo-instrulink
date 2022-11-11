@@ -25,7 +25,7 @@ export default function App() {
 
             <Route path="MainMenu" element={<MainMenu wallet={wallet} setWallet={setWallet} dataDistributer={dataDistributer} dataAll={dataAll} dataView={dataView} setDataView={setDataView} setDataAssign={setDataAssign} navigation={navigate} />} />
             <Route path="ViewAll" element={<ViewAll dataView={dataView} navigation={navigate} />} />
-            <Route path="ViewAssign" element={<ViewAssign dataAssign={dataAssign} navigation={navigate} />} />
+            <Route path="ViewAssign" element={<ViewAssign wallet={wallet} dataAssign={dataAssign} navigation={navigate} />} />
             <Route path="ViewInstrument" element={<ViewInstrument dataIns={dataIns} lastIndex={lastIndex} setDataIns={setDataIns} setLastIndex={setLastIndex} index={url_param.get('id')} roles={url_param.get('roles')} navigation={navigate} />} />
             <Route path="Add" element={<Add wallet={wallet} navigation={navigate} />} />
             <Route path="Qr" element={<Qr index={url_param.get('id')} navigation={navigate} />} />

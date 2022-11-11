@@ -85,7 +85,7 @@ class Main extends Component {
     }
 
     render() {
-        let { inputWalletTemp, account, signedTx, challenge } = this.state
+        let { account } = this.state
         const { setWallet, setDataAll, setDataDistributer, navigation } = this.props
 
         const connect = async () => {
@@ -276,9 +276,40 @@ const ViewAll = (props) => {
 };
 
 const ViewAssign = (props) => {
+    const wallet = props.wallet
+
+    let [insId, setInsId] = useState()
+    let [signedTx, setSignedTx] = useState()
+
+    const assign_txt = 'serial_id:'
+
+    const assign = async () => {
+        try {
+            let recieverAddress = prompt("Please enter receiver wallet address:", "");
+            const params = await algodClient.getTransactionParams().do();
+            const txn = algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject({
+                suggestedParams: params,
+                from: wallet,
+                to: recieverAddress,
+                assetIndex: 120764329,
+                amount: 1,
+                note: encoder.encode(assign_txt + insId)
+            });
+
+            const stx = await myAlgoConnect.signTransaction(txn.toByte());
+            const b64Stx = Buffer.from(stx.blob).toString("base64");
+            const response = await algodClient.sendRawTransaction(stx.blob).do();
+            setSignedTx(b64Stx)
+            alert("success")
+        } catch (err) {
+            console.error(err);
+            alert("failed")
+        }
+    };
+
     return (
         < div className="container" >
-            <Table dataAssign={props.dataAssign} navigation={props.navigation} />
+            <Table dataAssign={props.dataAssign} assign={assign} setInsId={setInsId} navigation={props.navigation} />
         </div >
     )
 };
@@ -334,10 +365,24 @@ const Add = (props) => {
 
     // let { account, signedTx, challenge } = this.state
 
-    let [instrument, setInstrument] = useState()
+    let [insId, setInsId] = useState()
+    let [insName, setInsName] = useState()
+    let [insType, setInsType] = useState()
+
     let [signedTx, setSignedTx] = useState()
 
+    const getJson  = () => {
+        let instrument_json = {}
+
+        instrument_json.ins_id = insId;
+        instrument_json.ins_name = insName;
+        instrument_json.ins_type = insType;
+
+        return instrument_json
+    }
+
     const sign = async () => {
+        // console.log(getJson())
         try {
             const params = await algodClient.getTransactionParams().do();
             const txn = algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject({
@@ -346,7 +391,7 @@ const Add = (props) => {
                 to: wallet,
                 assetIndex: 120764329,
                 amount: 1,
-                note: encoder.encode(instrument)
+                note: encoder.encode(JSON.stringify(getJson()))
             });
 
             const stx = await myAlgoConnect.signTransaction(txn.toByte());
@@ -358,7 +403,7 @@ const Add = (props) => {
                 {
                     pathname: 'Qr',
                     search: createSearchParams({
-                        id: instrument
+                        id: insId
                     }).toString()
                 }
             )
@@ -368,49 +413,26 @@ const Add = (props) => {
         }
     };
 
-    // const assign = async () => {
-    //     document.getElementById("status").innerHTML = "Transaction Status: ";
-    //     try {
-    //         let recieverAddress = prompt("Please enter receiver wallet address:", "");
-    //         const params = await algodClient.getTransactionParams().do();
-    //         const txn = algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject({
-    //             suggestedParams: params,
-    //             from: account.address,
-    //             to: recieverAddress,
-    //             assetIndex: 120764329,
-    //             amount: 1,
-    //             note: encoder.encode(challenge)
-    //         });
-
-    //         const stx = await myAlgoConnect.signTransaction(txn.toByte());
-    //         const b64Stx = Buffer.from(stx.blob).toString("base64");
-    //         //const txBytes = Buffer.from(txn.toByte(), 'base64')
-    //         const response = await algodClient.sendRawTransaction(stx.blob).do();
-    //         console.log(response)
-    //         this.setState({ signedTx: b64Stx })
-    //         document.getElementById("status").innerHTML =
-    //             "Transaction Status: Succesful";
-    //     } catch (err) {
-    //         console.error(err);
-    //         document.getElementById("status").innerHTML =
-    //             "Transaction Status: Failed";
-    //     }
-    // };
-
-    // const [instrument_id, set_instrument_id] = useState();
-    // const [full_url, set_full_url] = useState();
-
     return (
         <div className="add">
-            {/* <h1>This is add page</h1> */}
-            <center>
-                <input
-                    type="text"
-                    onChange={(e) => setInstrument(e.target.value)}
-                    placeholder="Input instrument id here"
-                />
-
-            </center>
+            <label>Serial id:</label>
+            <input
+                type="text"
+                onChange={(e) => setInsId(e.target.value)}
+                placeholder="Input instrument id here"
+            />
+            <label>Name:</label>
+            <input
+                type="text"
+                onChange={(e) => setInsName(e.target.value)}
+                placeholder="Input instrument name here"
+            />
+            <label>Type:</label>
+            <input
+                type="text"
+                onChange={(e) => setInsType(e.target.value)}
+                placeholder="Input instrument type here"
+            />
 
             {/* <button onClick={() => set_full_url(view_url + instrument_id)}>Add</button> */}
             <button onClick={() => sign()}>Add</button>

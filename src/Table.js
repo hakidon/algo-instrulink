@@ -31,12 +31,9 @@ const TableHeader = (props) => {
 
 const TableBody = (props) => {
     var rows
-    const walletAdmin = 'TKFWGIK3TTRU7C5GCZCTMLT6D5TML6BYVER54OCGFWSC443BUI2XLNDFOQ'
-
-    let page = props.render_type === 'view_all' ? '/ViewInstrument' : '/Assign'
-    let page_txt = props.render_type === 'view_all' ? 'View' : 'Assign'
     rows = props.tableData.map((row, index) => {
-        if (props.roles) {
+        //If view
+        if (props.render_type === 'view_all') {
             return (
                 <tr key={index}>
                     <td>{row.ins_id}</td>
@@ -46,43 +43,32 @@ const TableBody = (props) => {
                         onClick={() => {
                             props.navigation(
                                 {
-                                    pathname: page,
+                                    pathname: '/ViewInstrument',
                                     search: createSearchParams({
                                         id: row.ins_id,
                                         roles: props.roles
                                     }).toString()
                                 }
                             );
-                        }}>{page_txt}</button></td>
+                        }}>View</button></td>
                 </tr>
             )
         }
-        return (
-            <tr key={index}>
-                <td>{row.ins_id}</td>
-                <td>{row.ins_name}</td>
-                <td>{row.ins_type}</td>
-                <td><button
-                    onClick={() => {
-                        props.navigation(
-                            {
-                                pathname: page,
-                                search: createSearchParams({
-                                    id: row.ins_id
-                                }).toString()
-                            }
-                        );
-                    }}>{page_txt}</button></td>
-            </tr>
-        )
+            return (
+                <tr key={index}>
+                    <td>{row.ins_id}</td>
+                    <td>{row.ins_name}</td>
+                    <td>{row.ins_type}</td>
+                    <td><button
+                        onClick={() => {
+                            props.setInsId(row.ins_id)
+                            props.assign() 
+                        }}>Assign</button></td>
+                </tr>
+            )
+        
     })
-    // }
 
-    // if (!props.tableData)
-    //     return <tbody>{first_row()}</tbody>
-
-    // if (props.render_type === 'view_instrument')
-    //     return <tbody>{first_row()}{rows}</tbody>
 
     return <tbody>{rows}</tbody>
 }
@@ -98,6 +84,7 @@ class Table extends Component {
 
         button_page = '/MainMenu'
         if (dataAssign) {
+            const { assign, setInsId } = this.props
             render_type = 'view_assign'
             if (!dataAssign.length)
                 return <h1>No available instrument to assign</h1>
@@ -106,7 +93,7 @@ class Table extends Component {
                 <div className="display">
                     <table>
                         <TableHeader render_type={render_type} />
-                        <TableBody tableData={dataAssign} render_type={render_type} navigation={navigation} />
+                        <TableBody tableData={dataAssign} render_type={render_type} navigation={navigation} assign={assign} setInsId={setInsId}/>
                     </table>
                     <button onClick={() => navigation(button_page)}>Back</button>
                 </div>
