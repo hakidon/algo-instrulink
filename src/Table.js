@@ -62,7 +62,6 @@ const TableBody = (props) => {
                     <td><button
                         onClick={() => {
                             props.setInsId(row.ins_id)
-                            props.assign() 
                         }}>Assign</button></td>
                 </tr>
             )
@@ -84,7 +83,7 @@ class Table extends Component {
 
         button_page = '/MainMenu'
         if (dataAssign) {
-            const { assign, setInsId } = this.props
+            const { setInsId } = this.props
             render_type = 'view_assign'
             if (!dataAssign.length)
                 return <h1>No available instrument to assign</h1>
@@ -93,7 +92,7 @@ class Table extends Component {
                 <div className="display">
                     <table>
                         <TableHeader render_type={render_type} />
-                        <TableBody tableData={dataAssign} render_type={render_type} navigation={navigation} assign={assign} setInsId={setInsId}/>
+                        <TableBody tableData={dataAssign} render_type={render_type} navigation={navigation} setInsId={setInsId}/>
                     </table>
                     <button onClick={() => navigation(button_page)}>Back</button>
                 </div>

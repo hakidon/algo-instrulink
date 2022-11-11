@@ -25,6 +25,9 @@ var isDistributer = false
 var isAdmin = false
 var isUser = false
 
+const walletAdmin = 'TKFWGIK3TTRU7C5GCZCTMLT6D5TML6BYVER54OCGFWSC443BUI2XLNDFOQ' //Manufacter
+const assetId = 121415136
+
 const reset = () => {
     isDistributer = false
     isAdmin = false
@@ -149,7 +152,6 @@ class MainMenu extends Component {
     }
     render() {
         const { wallet, setWallet, dataDistributer, dataAll, dataView, setDataView, setDataAssign, navigation } = this.props
-        const walletAdmin = 'TKFWGIK3TTRU7C5GCZCTMLT6D5TML6BYVER54OCGFWSC443BUI2XLNDFOQ' //Manufacter
 
         if (wallet) {
             if (wallet === walletAdmin)
@@ -281,6 +283,7 @@ const ViewAssign = (props) => {
     let [insId, setInsId] = useState()
     let [signedTx, setSignedTx] = useState()
 
+
     const assign_txt = 'serial_id:'
 
     const assign = async () => {
@@ -291,7 +294,7 @@ const ViewAssign = (props) => {
                 suggestedParams: params,
                 from: wallet,
                 to: recieverAddress,
-                assetIndex: 120764329,
+                assetIndex: assetId,
                 amount: 1,
                 note: encoder.encode(assign_txt + insId)
             });
@@ -301,15 +304,21 @@ const ViewAssign = (props) => {
             const response = await algodClient.sendRawTransaction(stx.blob).do();
             setSignedTx(b64Stx)
             alert("success")
+            props.navigation('/')
         } catch (err) {
             console.error(err);
             alert("failed")
         }
-    };
+    }
+
+    if (insId) {
+        if (!signedTx)
+            assign()
+    }
 
     return (
         < div className="container" >
-            <Table dataAssign={props.dataAssign} assign={assign} setInsId={setInsId} navigation={props.navigation} />
+            <Table dataAssign={props.dataAssign} setInsId={setInsId} navigation={props.navigation} />
         </div >
     )
 };
@@ -354,7 +363,7 @@ const Qr = (props) => {
                 fgColor='black'
                 size={300}
             />
-            <button onClick={() => props.navigation('/MainMenu')}>Back</button>
+            <button onClick={() => props.navigation('/')}>Back</button>
         </div>
     )
 };
@@ -371,7 +380,7 @@ const Add = (props) => {
 
     let [signedTx, setSignedTx] = useState()
 
-    const getJson  = () => {
+    const getJson = () => {
         let instrument_json = {}
 
         instrument_json.ins_id = insId;
@@ -389,7 +398,7 @@ const Add = (props) => {
                 suggestedParams: params,
                 from: wallet,
                 to: wallet,
-                assetIndex: 120764329,
+                assetIndex: assetId,
                 amount: 1,
                 note: encoder.encode(JSON.stringify(getJson()))
             });

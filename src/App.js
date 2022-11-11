@@ -17,7 +17,6 @@ export default function App() {
     var [wallet, setWallet] = useState();
     var [dataDistributer, setDataDistributer] = useState();
 
-    console.log(wallet)
     return (
         <Routes>
             <Route path="/" element={<Main setWallet = {setWallet} setDataAll={setDataAll} setDataDistributer={setDataDistributer} navigation={navigate}/>} />
