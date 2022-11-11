@@ -1,0 +1,523 @@
+@charset "utf-8";
+@import url("font-awesome.min.css");
+@import url("framework.css");
+
+/* Rows
+--------------------------------------------------------------------------------------------------------------- */
+.row1{border-bottom:1px solid;}
+.row2, .row2 a{}
+.row3, .row3 a{}
+.row4, .row4 a{}
+.row5, .row5 a{}
+
+
+/* Header
+--------------------------------------------------------------------------------------------------------------- */
+#header{}
+
+#header #logo{margin:30px 0 0 0;}
+#header #logo h1{margin:0; padding:0; font-size:22px; text-transform:uppercase;}
+
+
+/* Page Intro
+--------------------------------------------------------------------------------------------------------------- */
+#pageintro{
+  padding:200px 0;
+  width:100%;
+  height:100%;
+  box-sizing:border-box;}
+
+#pageintro article{display:block; max-width:75%; margin:0 auto; text-align:center;}
+#pageintro article *{word-wrap:break-word;}
+#pageintro p:first-of-type{display:block; max-width:75%; margin:0 auto 30px;}
+#pageintro footer{margin-top:100px; overflow: hidden;}
+
+#pageintro .heading {
+  margin-bottom: 20px; 
+  font-size: 3rem;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  background: linear-gradient(to bottom, #006699, #006699 60%, #fff 60%, #fff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-repeat: no-repeat;
+  transition: background 0.2s ease-out;
+  white-space: nowrap;
+}
+
+
+/* Content Area
+--------------------------------------------------------------------------------------------------------------- */
+.container{padding:80px 0;}
+
+/* Colours
+--------------------------------------------------------------------------------------------------------------- */
+body{color:#CBCBCB; background-color:#2B2F32;}
+a{color:#FE0000;}
+a:active, a:focus{background:transparent;}/* IE10 + 11 Bugfix - prevents grey background */
+hr, .borderedbox{border-color:#D7D7D7;}
+label span{color:#FF0000; background-color:inherit;}
+input:focus, textarea:focus, *:required:focus{border-color:#56AED4;}
+
+.overlay{color:#FFFFFF; background-color:inherit;}
+.overlay::after{color:inherit; background-color:rgba(0,0,0,.55);}
+.overlay.light{color:#474747;}
+.overlay.light::after{background-color:rgba(255,255,255,.8);}
+
+.button-container {
+	text-align: center;
+}
+
+.btn, .btn.inverse:hover {
+  color:#FFFFFF; 
+  background-color: #006699; 
+  border-color: white;
+	border-radius: .5rem;
+	padding: 0.75rem 1.6rem;
+  font-weight: 300;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.btn:hover, .btn.inverse {
+  color:inherit; 
+  background-color:transparent; 
+  border-color:inherit;
+}
+
+.btn-back {
+  margin-bottom: 3vh;
+}
+
+.imgover:hover::before{background:rgba(0,0,0,.55);}
+.imgover, .imgover:hover::after{color:#FFFFFF;}
+
+
+/* Rows */
+.row1{color:#FFFFFF; border-color:rgba(255,255,255,.4);}
+.row2{color:#474747; background-color:#FAFAFA;}
+.row3{color:#474747; background-color:#FFFFFF;}
+.row4{color:#CBCBCB; background-color:#33363B;}
+.row5, .row5 a{color:#CBCBCB; background-color:#2B2F32;}
+
+/* Media Queries
+--------------------------------------------------------------------------------------------------------------- */
+@-ms-viewport{width:device-width;}
+
+
+/* Max Wrapper Width - Laptop, Desktop etc.
+--------------------------------------------------------------------------------------------------------------- */
+@media screen and (min-width:978px){
+	.hoc{max-width:978px;}
+}
+
+
+/* Mobile Devices
+--------------------------------------------------------------------------------------------------------------- */
+@media screen and (max-width:900px){
+	.hoc{max-width:90%;}
+
+	#header{padding:30px 0;}
+	#header #logo{margin-top:3px;}
+
+	#mainav{}
+	#mainav ul{display:none;}
+	#mainav form{display:block;}
+
+	#breadcrumb{}
+
+	.container{}
+	#comments input[type="reset"]{margin-top:10px;}
+	.pagination li{display:inline-block; margin:0 5px 5px 0;}
+
+	#footer{}
+
+	#copyright{}
+	#copyright p:first-of-type{margin-bottom:10px;}
+}
+
+
+@media screen and (max-width:750px){
+	.imgl, .imgr{display:inline-block; float:none; margin:0 0 10px 0;}
+	.fl_left, .fl_right{display:block; float:none;}
+	.group .group > *:last-child, .clear .clear > *:last-child, .clear .group > *:last-child, .group .clear > *:last-child{margin-bottom:0;}/* Experimental - Needs more testing in different situations, stops double margin when stacking */
+	.one_half, .one_third, .two_third, .one_quarter, .two_quarter, .three_quarter{display:block; float:none; width:auto; margin:0 0 50px 0; padding:0;}
+
+	#header{text-align:center;}
+	#header #logo{margin:0 0 15px 0;}
+
+	.sectiontitle, .testimonials article{text-align:left;}
+	.testimonials article{max-width:none;}
+
+	#footer{padding-bottom:30px;}/* Not needed, just looks better. Compensates for the grid elements bottom margin when stacked */
+}
+
+
+/* Other
+--------------------------------------------------------------------------------------------------------------- */
+@media screen and (max-width:650px){
+	.scrollable{display:block; width:100%; margin:0 0 30px 0; padding:0 0 15px 0; overflow:auto; overflow-x:scroll;}
+	.scrollable table{margin:0; padding:0; white-space:nowrap;}
+
+	.inline li{display:block; margin-bottom:10px;}
+	.pushright li{margin-right:0;}
+
+
+	.font-x2{font-size:1.4rem;}
+	.font-x3{font-size:1.6rem;}
+
+	#pageintro article, #pageintro p:first-of-type{max-width:none; width:100%;}
+	#pageintro .heading{font-size:1.6rem;}
+}
+
+
+/* Details/Registration page
+--------------------------------------------------------------------------------------------------------------- */
+
+.container-details {
+	width: 100%;
+	height: 100vh;
+	margin: 0;
+	color:white;
+	font-family: Tahoma;
+	font-size: 16px;
+}
+  
+  h1, p {
+	margin: 1em auto;
+	text-align: center;
+  }
+  
+  form {
+	  width: 60vw;
+	  max-width: 500px;
+	  min-width: 300px;
+	  margin: 0 auto;
+	  padding-bottom: 2em;
+  }
+  
+  fieldset {
+	border: none;
+	  padding: 2rem 0;
+  }
+  
+  fieldset:not(:last-of-type) {
+	border-bottom: 3px solid #3b3b4f;
+  }
+  
+  label {
+	display: block;
+	  margin: 0.5rem 0;
+  }
+  
+  input,
+  textarea,
+  select {
+	margin: 10px 0 0 0;
+	  width: 100%;
+	min-height: 2em;
+  }
+  
+  input, textarea {
+	background-color: #0a0a23;
+	border: 1px solid #0a0a23;
+	color: #ffffff;
+  }
+  
+  .inline {
+	width: unset;
+	margin: 0 0.5em 0 0;
+	vertical-align: middle;
+  }
+  
+  input[type="submit"] {
+	display: block;
+	width: 60%;
+	margin: 1em auto;
+	height: 2em;
+	font-size: 1.4rem;
+  font-weight: 300;
+	background-color: #006699;
+	border-color: white;
+  cursor: pointer;
+  border-radius: .5rem;
+	min-width: 300px;
+  }
+  
+  input[type="file"] {
+	padding: 1px 2px;
+  }
+  
+  input[type="submit"]:hover {
+    color:inherit; 
+    background-color:transparent; 
+    border-color:inherit;
+  }
+
+  a {
+	color: #dfdfe2;
+  }
+
+/* Ownership page
+--------------------------------------------------------------------------------------------------------------- */
+
+.container-ownership {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 16px;
+  color: #fff;
+  margin: 0 0 15px 0;
+  padding: 0;
+}
+
+.ownership-title {
+  background: #0060aa url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/194554/city.jpg) no-repeat right top;
+  padding: 1px;
+  margin: 0 0 35px 0;
+  min-height: 165px;
+}
+
+.ownership-title h1 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 2.3em;
+  text-transform: uppercase;
+  margin: 50px 0 5px 30px;
+}
+
+.ownership-title p {
+  line-height: 20px;
+  font-size: 1.2em;
+  margin: 0;
+  padding: 0px 30px 15px 30px;
+  color: rgba(255, 255, 255, .6);
+}
+
+p.source {
+  font-size: .8em;
+  font-style: italic;
+  margin: 0 0 0 30px;
+  color: rgba(255, 255, 255, .5);
+}
+
+p.source a {
+  color: rgba(255, 255, 255, .75);
+  padding-left: 7px;
+}
+
+ol.owner {
+  list-style-type: none;
+  margin: 0 0 0 75px;
+}
+
+ol.owner li {
+  /* https://www.w3schools.com/cssref/pr_gen_counter-increment.asp */
+  counter-increment: myCounter;
+  margin: 0 0 45px 0;
+  padding: 13px 0 0 85px;
+  position: relative;
+  color: #ccffff;
+  font-size: 0.9em;
+}
+
+ol.owner li::before {
+  /* https://www.w3schools.com/cssref/sel_before.asp */
+  content: counter(myCounter,decimal-leading-zero);
+  /* https://www.w3schools.com/css/css_inline-block.asp */
+  display: inline-block;
+  text-align: center;
+  font-size: 4em;
+  line-height: 1.3em;
+  background-color: white;
+  color: #0099CC;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: -40px;
+  border-radius: 5px;
+}
+
+ol.owner li em {
+  display: block;
+  font-style: italic;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 -5px 0;
+}
+
+ol.owner li strong {
+  display: block;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 900;
+  font-size: 2em;
+  color: #fff;
+  margin: .2em 0 .3em 0;
+}
+
+/* Assign/View page
+--------------------------------------------------------------------------------------------------------------- */
+
+.container-assign td, .container-assign th {
+  color: black;
+  text-align: center;
+}
+
+.container-assign h1{
+  font-size: 30px;
+  color: black;
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 15px;
+}
+table{
+  width:100%;
+  table-layout: fixed;
+}
+.tbl-header{
+  background-color: rgba(255,255,255,0.3);
+ }
+.tbl-content{
+  height:300px;
+  overflow-x:auto;
+  margin-top: 0px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+th{
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  color: #fff;
+  text-transform: uppercase;
+}
+td{
+  padding: 15px;
+  text-align: left;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 12px;
+  color: #fff;
+  border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+
+
+/* demo styles */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+body{
+  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+  background: linear-gradient(to right, #25c481, #25b7c4);
+  font-family: 'Roboto', sans-serif;
+}
+section{
+  margin: 50px;
+}
+
+/* for custom scrollbar for webkit browser*/
+
+::-webkit-scrollbar {
+    width: 6px;
+} 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+} 
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+
+
+/* Not found
+--------------------------------------------------------------------------------------------------------------- */
+body {
+  background-color: #2B2F32;
+}
+
+svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -400px;
+}
+.message-box {
+  height: 200px;
+  width: 380px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: 50px;
+  color: #FFF;
+  font-family: Roboto;
+  font-weight: 300;
+}
+.message-box h1 {
+  font-size: 60px;
+  line-height: 46px;
+  margin-bottom: 40px;
+}
+.buttons-con .action-link-wrap {
+  margin-top: 40px;
+}
+.buttons-con .action-link-wrap a {
+  background: #006699;
+  padding: 0.75rem 1.6rem;
+  border-radius: .5rem;
+  color: #FFF;
+  font-weight: 300;
+  font-size: 1.4rem;
+  transition: all 0.3s linear;
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 10px;
+
+}
+.buttons-con .action-link-wrap a:hover {
+  background: #5A5C6C;
+  color: #fff;
+}
+
+#Polygon-1 , #Polygon-2 , #Polygon-3 , #Polygon-4 , #Polygon-4, #Polygon-5 {
+  animation: float 1s infinite ease-in-out alternate;
+}
+#Polygon-2 {
+  animation-delay: .2s; 
+}
+#Polygon-3 {
+  animation-delay: .4s; 
+}
+#Polygon-4 {
+  animation-delay: .6s; 
+}
+#Polygon-5 {
+  animation-delay: .8s; 
+}
+
+@keyframes float {
+	100% {
+    transform: translateY(20px);
+  }
+}
+@media (max-width: 450px) {
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -190px;
+  }
+  .message-box {
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -190px;
+    text-align: center;
+  }
+}
+
