@@ -13,7 +13,6 @@ There are a few features for the users of the application; manufacturers, distri
 + **View** 
   - This feature is available to display list of all of the instruments associated to user's possesion. The user can also view the ownership transaction for the specific instrument as well as the current owner.
 
-## How to Install and Run the Project
 ## How To Use the Project
 - The project can be cloned from the repository url: https://github.com/hakidon/algo-instrulink
 - Run npm -start to start node enviroment
